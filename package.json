@@ -1,0 +1,91 @@
+{
+	"name": "eslint-plugin-react-no-manual-memo",
+	"version": "1.0.0",
+	"description": "ESLint plugin for React Compiler users to flag manual memoization (useMemo, useCallback, React.memo), reminding you to let the compiler do its thing ✨",
+	"author": "BellCube",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/BellCubeDev/eslint-plugin-react-no-manual-memo"
+	},
+	"type": "module",
+	"types": "build/legacy/index.d.ts",
+	"main": "build/legacy/index.cjs",
+	"module": "build/legacy/index.js",
+	"react-native": "src/index.ts",
+	"exports": {
+		".": {
+			"@tanstack/custom-condition": "./src/index.ts",
+			"import": {
+				"types": "./build/modern/index.d.ts",
+				"default": "./build/modern/index.js"
+			},
+			"require": {
+				"types": "./build/modern/index.d.cts",
+				"default": "./build/modern/index.cjs"
+			}
+		},
+		"./package.json": "./package.json"
+	},
+	"sideEffects": false,
+	"files": [
+		"build",
+		"src",
+		"!src/__tests__"
+	],
+	"peerDependencies": {
+		"eslint": "^8.57.0 || ^9.0.0"
+	},
+	"packageManager": "pnpm@10.18.0+sha512.e804f889f1cecc40d572db084eec3e4881739f8dec69c0ff10d2d1beff9a4e309383ba27b5b750059d7f4c149535b6cd0d2cb1ed3aeb739239a4284a68f40cfa",
+	"scripts": {
+		"preinstall": "node -e \"if(process.env.CI == 'true') {console.log('Skipping preinstall...')} else {process.exit(1)}\" || npx -y only-allow pnpm",
+		"test": "pnpm run /^test:[^:]+$/",
+		"clean": "premove ./dist ./coverage ./dist-ts",
+		"compile": "tsc --build",
+		"test:eslint": "eslint --concurrency=auto ./src",
+		"test:types": "tsc --build",
+		"test:lib": "vitest",
+		"test:lib:dev": "pnpm run test:lib --watch",
+		"test:build": "pnpm run build && publint --strict && attw --pack",
+		"build": "tsup --tsconfig tsconfig.prod.json",
+		"docgen": "eslint-doc-generator",
+		"docgen:check": "pnpm run build && eslint-doc-generator --check"
+	},
+	"dependencies": {
+		"@typescript-eslint/utils": "^8.45.0"
+	},
+	"devDependencies": {
+		"@arethetypeswrong/cli": "^0.18.2",
+		"@cspell/eslint-plugin": "^9.2.1",
+		"@eslint/compat": "^1.4.0",
+		"@tanstack/config": "^0.20.3",
+		"@types/node": "^24.6.2",
+		"@typescript-eslint/parser": "^8.45.0",
+		"@typescript-eslint/rule-tester": "^8.45.0",
+		"@vitest/coverage-istanbul": "3.2.4",
+		"@vitest/eslint-plugin": "^1.3.15",
+		"esbuild-plugin-file-path-extensions": "^2.1.4",
+		"eslint": "^9.37.0",
+		"eslint-doc-generator": "^2.2.2",
+		"eslint-plugin-eslint-plugin": "^7.0.0",
+		"husky": "^9.1.7",
+		"premove": "^4.0.0",
+		"publint": "^0.3.13",
+		"tinyglobby": "^0.2.15",
+		"tsup": "^8.5.0",
+		"typescript": "5.9.3",
+		"vite": "^7.1.9",
+		"vitest": "3.2.4"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"@parcel/watcher",
+			"esbuild",
+			"msw",
+			"unrs-resolver"
+		],
+		"patchedDependencies": {
+			"eslint-doc-generator": "patches/eslint-doc-generator.patch"
+		}
+	}
+}

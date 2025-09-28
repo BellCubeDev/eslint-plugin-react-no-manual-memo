@@ -1,0 +1,45 @@
+diff --git a/dist/lib/generator.js b/dist/lib/generator.js
+index 79a3d69132ab311527577cd927c63c4fab744b97..a838dc042184d1f4137be1a824f3799a4f939ac6 100644
+--- a/dist/lib/generator.js
++++ b/dist/lib/generator.js
+@@ -94,7 +94,6 @@ export async function generate(path, options) {
+         const schema = rule.meta?.schema;
+         const description = rule.meta?.docs?.description;
+         const pathToDoc = join(path, replaceRulePlaceholder(pathRuleDoc, name));
+-        const ruleHasOptions = hasOptions(schema);
+         if (!existsSync(pathToDoc)) {
+             if (!initRuleDocs) {
+                 throw new Error(`Could not find rule doc (run with --init-rule-docs to create): ${relative(getPluginRoot(path), pathToDoc)}`);
+@@ -107,9 +106,7 @@ export async function generate(path, options) {
+                         .map((title) => `## ${title}`)
+                         .join(`${EOL}${EOL}`)
+                     : undefined,
+-                ruleHasOptions
+-                    ? `## Options${EOL}${EOL}${BEGIN_RULE_OPTIONS_LIST_MARKER}${EOL}${END_RULE_OPTIONS_LIST_MARKER}`
+-                    : undefined,
++                `## Options${EOL}${EOL}${BEGIN_RULE_OPTIONS_LIST_MARKER}${EOL}${END_RULE_OPTIONS_LIST_MARKER}`,
+             ]
+                 .filter((section) => section !== undefined)
+                 .join(`${EOL}${EOL}`);
+@@ -145,7 +142,7 @@ export async function generate(path, options) {
+         }
+         if (ruleDocSectionOptions) {
+             // Options section.
+-            expectSectionHeaderOrFail(`\`${name}\` rule doc`, contentsNew, ['Options', 'Config'], ruleHasOptions);
++            expectSectionHeaderOrFail(`\`${name}\` rule doc`, contentsNew, ['Options', 'Config'], true);
+             for (const { name: namedOption } of getAllNamedOptions(schema)) {
+                 expectContentOrFail(`\`${name}\` rule doc`, 'rule option', contentsNew, namedOption, true); // Each rule option is mentioned.
+             }
+diff --git a/dist/lib/rule-options-list.js b/dist/lib/rule-options-list.js
+index a7a3b81361638e454fecb0378cbafb16d245d515..be2caa30e53b065b8c7446e8ae710d3ffbb567b0 100644
+--- a/dist/lib/rule-options-list.js
++++ b/dist/lib/rule-options-list.js
+@@ -78,7 +78,7 @@ function ruleOptionsToColumnsToDisplay(ruleOptions) {
+ function generateRuleOptionsListMarkdown(rule) {
+     const ruleOptions = getAllNamedOptions(rule.meta?.schema);
+     if (ruleOptions.length === 0) {
+-        return '';
++        return 'This rule has no configuration options.';
+     }
+     const columnsToDisplay = ruleOptionsToColumnsToDisplay(ruleOptions);
+     const listHeaderRow = Object.keys(COLUMN_TYPE_DEFAULT_PRESENCE_AND_ORDERING)

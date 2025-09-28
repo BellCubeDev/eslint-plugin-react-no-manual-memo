@@ -1,0 +1,96 @@
+name: Sanity Checks
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tools
+        uses: tanstack/config/.github/setup@9286c261b7c25a2c0342e2a06510f9cd9e4512f6
+
+      - name: Run Tests
+        run: pnpm run test:lib
+
+
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tools
+        uses: tanstack/config/.github/setup@9286c261b7c25a2c0342e2a06510f9cd9e4512f6
+
+      - name: Run Lint
+        run: pnpm run test:eslint
+
+
+
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tools
+        uses: tanstack/config/.github/setup@9286c261b7c25a2c0342e2a06510f9cd9e4512f6
+
+      - name: Run Typecheck
+        run: pnpm run test:types
+
+
+
+  documentation:
+    name: Check Auto-Generated Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tools
+        uses: tanstack/config/.github/setup@9286c261b7c25a2c0342e2a06510f9cd9e4512f6
+
+      - name: Run Documentation Check
+        run: pnpm run docgen:check
+
+
+
+  can-build:
+    name: Ensure Project Can Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Setup Tools
+        uses: tanstack/config/.github/setup@9286c261b7c25a2c0342e2a06510f9cd9e4512f6
+
+      - name: Run Build
+        run: pnpm run build
+
+      - name: PNPM Pack
+        run: |
+          pnpm pack
