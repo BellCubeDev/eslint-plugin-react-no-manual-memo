@@ -94,35 +94,6 @@ jobs:
           echo ""
           cat ~/.npm/_logs/*.log || echo "No NPM log file found"
 
-      #################################
-      ##                             ##
-      ##   GitHub Package Registry   ##
-      ##                             ##
-      #################################
-
-      - uses: jossef/action-set-json-field@v2.1
-        name: "Change Package Name for GitHub Package Registry"
-        with:
-          file: package.json
-          field: name
-          value: "@${{ github.repository_owner }}/${{ github.event.repository.name }}"
-
-      - id: publish-gpr
-        name: Publish to GitHub Package Registry
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          pnpm dlx npm publish --access public --registry https://npm.pkg.github.com --tag ${{ github.event.release.prerelease && 'next' || 'latest' }} --provenance
-
-      - name: ON FAILURE - cat NPM debug log for "Publish to GitHub Package Registry"
-        if: always() && steps.publish-gpr.outcome == 'failure'
-        run: |
-          echo "ACTIONS_ID_TOKEN_REQUEST_URL: $ACTIONS_ID_TOKEN_REQUEST_URL"
-          echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN is set: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN != '' }}"
-          echo ""
-          echo ""
-          cat ~/.npm/_logs/*.log || echo "No NPM log file found"
-
       ###########################
       ##                       ##
       ##   Release Artifacts   ##
