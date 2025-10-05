@@ -61,8 +61,8 @@
 		"test:lib:dev": "pnpm run test:lib --watch",
 		"test:build": "pnpm run build && publint --strict && attw --pack",
 		"build": "tsup --tsconfig tsconfig.prod.json",
-		"docgen": "eslint-doc-generator",
-		"docgen:check": "pnpm run build && eslint-doc-generator --check"
+		"docgen": "pnpm run build && eslint-doc-generator",
+		"docgen:check": "pnpm run docgen --check"
 	},
 	"dependencies": {
 		"@typescript-eslint/utils": "^8.45.0"
