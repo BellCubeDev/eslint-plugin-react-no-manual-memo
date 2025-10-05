@@ -57,7 +57,7 @@ import { defineConfig } from "eslint/config";
 import reactNoManualMemo from 'eslint-plugin-react-no-manual-memo';
 
 export default defineConfig([
-  	reactNoManualMemo.configs['flat/recommended'],
+	reactNoManualMemo.configs['flat/recommended'],
 ]);
 ```
 
@@ -94,7 +94,7 @@ Use the recommended config:
 
 ```json
 {
-  "extends": ["plugin:react-no-manual-memo/recommended"]
+	"extends": ["plugin:react-no-manual-memo/recommended"]
 }
 ```
 

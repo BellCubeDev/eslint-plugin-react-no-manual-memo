@@ -45,12 +45,10 @@ import * as React from 'react';
 
 // React.memo wildcard import usage (auto-fixable)
 const MyComponent = React.memo(function ({ name, age }) {
-  return (
-	<div>
-	  <h1>{name}</h1>
-	  <p>Age: {age}</p>
-	</div>
-  );
+	return <div>
+		<h1>{name}</h1>
+		<p>Age: {age}</p>
+	</div>;
 });
 ```
 

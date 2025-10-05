@@ -37,15 +37,15 @@ import { useCallback } from 'react'
 
 // Only uses useCallback
 function useCallbacks() {
-  const handleClick = useCallback(() => {
-	console.log('clicked')
-  }, [])
+	const handleClick = useCallback(() => {
+		console.log('clicked')
+	}, [])
 
-  const handleSubmit = useCallback(() => {
-	console.log('submitted')
-  }, [])
+	const handleSubmit = useCallback(() => {
+		console.log('submitted')
+	}, [])
 
-  return { handleClick, handleSubmit }
+	return { handleClick, handleSubmit }
 }
 ```
 
@@ -54,11 +54,11 @@ import * as React from 'react'
 
 // Only uses useMemo
 function useMemoValues() {
-  const expensiveValue = React.useMemo(() => {
-	return calculateSomething()
-  }, [])
+	const expensiveValue = React.useMemo(() => {
+		return calculateSomething()
+	}, [])
 
-  return expensiveValue
+	return expensiveValue
 }
 ```
 
@@ -67,9 +67,9 @@ import React from 'react'
 
 // Uses both useCallback and useMemo but no other hooks
 function useMixed() {
-  const callback = React.useCallback(() => {}, [])
-  const value = React.useMemo(() => ({}), [])
-  return { callback, value }
+	const callback = React.useCallback(() => {}, [])
+	const value = React.useMemo(() => ({}), [])
+	return { callback, value }
 }
 ```
 
@@ -78,9 +78,9 @@ function useMixed() {
 ```jsx
 // Calls no hooks at all (see top of file for note about this example)
 function useUtilities() {
-  const format = (text) => text.toUpperCase()
-  const process = (data) => data.map(x => x * 2)
-  return { format, process }
+	const format = (text) => text.toUpperCase()
+	const process = (data) => data.map(x => x * 2)
+	return { format, process }
 }
 ```
 
@@ -89,9 +89,9 @@ import { useState, useCallback } from 'react'
 
 // Uses other hooks (useState) - React Compiler can optimize this
 function useCounter() {
-  const [count, setCount] = useState(0)
-  const increment = useCallback(() => setCount(c => c + 1), [])
-  return { count, increment }
+	const [count, setCount] = useState(0)
+	const increment = useCallback(() => setCount(c => c + 1), [])
+	return { count, increment }
 }
 ```
 
@@ -100,19 +100,19 @@ import { useState, useMemo, useEffect } from 'react'
 
 // Uses useEffect - React Compiler can optimize this
 function useWindowSize() {
-  const [size, setSize] = useState({ width: 0, height: 0 })
+	const [size, setSize] = useState({ width: 0, height: 0 })
 
-  useEffect(() => {
-	const handler = () => setSize({
-	  width: window.innerWidth,
-	  height: window.innerHeight
-	})
-	window.addEventListener('resize', handler)
-	return () => window.removeEventListener('resize', handler)
-  }, [])
+	useEffect(() => {
+		const handler = () => setSize({
+			width: window.innerWidth,
+			height: window.innerHeight
+		})
+		window.addEventListener('resize', handler)
+		return () => window.removeEventListener('resize', handler)
+	}, [])
 
-  const memoizedSize = useMemo(() => size, [size])
-  return memoizedSize
+	const memoizedSize = useMemo(() => size, [size])
+	return memoizedSize
 }
 ```
 
@@ -121,11 +121,11 @@ import { useCallback } from 'react'
 
 // Contains JSX - different use case
 function useButton() {
-  const handleClick = useCallback(() => {
-	console.log('clicked')
-  }, [])
+	const handleClick = useCallback(() => {
+		console.log('clicked')
+	}, [])
 
-  return <button onClick={handleClick}>Click me</button>
+	return <button onClick={handleClick}>Click me</button>
 }
 ```
 
@@ -137,9 +137,9 @@ function useButton() {
 ```jsx
 import { useCallback } from 'react'
 function createHelpers() {
-  const helper1 = useCallback(() => {}, [])
-  const helper2 = useMemo(() => ({}), [])
-  return { helper1, helper2 }
+	const helper1 = useCallback(() => {}, [])
+	const helper2 = useMemo(() => ({}), [])
+	return { helper1, helper2 }
 }
 ```
 
