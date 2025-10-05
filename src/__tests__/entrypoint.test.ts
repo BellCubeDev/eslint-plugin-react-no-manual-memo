@@ -4,6 +4,7 @@ import { ESLint } from 'eslint';
 import { expect, test } from 'vitest';
 import plugin, { type Plugin } from '../index';
 import * as noHookMemo from '../rules/no-hook-memo/no-hook-memo.rule';
+import { defineConfig } from 'eslint/config';
 
 test('plugin can be loaded by ESLint', async () => {
 	// Verify the plugin has expected structure
@@ -17,13 +18,10 @@ test('plugin can be loaded by ESLint', async () => {
 			plugins: {
 				'react-no-manual-memo': plugin satisfies Plugin as any,
 			},
-			baseConfig: [
-				{
-					rules: {
-						'react-no-manual-memo/no-hook-memo': 'error',
-					},
-				}
-			]
+			baseConfig: defineConfig([
+				plugin.configs['flat/all'],
+				plugin.configs['flat/recommended'],
+			]),
 		}
 	);
 
