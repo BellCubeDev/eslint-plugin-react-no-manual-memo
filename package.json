@@ -6,7 +6,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/BellCubeDev/eslint-plugin-react-no-manual-memo"
+		"url": "git+https://github.com/BellCubeDev/eslint-plugin-react-no-manual-memo.git"
 	},
 	"type": "module",
 	"types": "build/legacy/index.d.ts",
