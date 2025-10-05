@@ -8,7 +8,25 @@
 		"type": "git",
 		"url": "git+https://github.com/BellCubeDev/eslint-plugin-react-no-manual-memo.git"
 	},
+	"keywords": [
+		"react", "compiler", "react-compiler",
+		"eslint", "plugin", "linting",
+		"memoization", "memo",
+		"React.memo",
+		"hooks", "react-hooks", "useMemo", "useCallback",
+		"optimization", "performance",
+		"refactoring"
+	],
+	"bugs": {
+		"url": "https://github.com/BellCubeDev/eslint-plugin-react-no-manual-memo/issues"
+	},
+
 	"type": "module",
+	"files": [
+		"build",
+		"src",
+		"!src/__tests__"
+	],
 	"types": "build/legacy/index.d.ts",
 	"main": "build/legacy/index.cjs",
 	"module": "build/legacy/index.js",
@@ -28,11 +46,7 @@
 		"./package.json": "./package.json"
 	},
 	"sideEffects": false,
-	"files": [
-		"build",
-		"src",
-		"!src/__tests__"
-	],
+
 	"peerDependencies": {
 		"eslint": "^8.57.0 || ^9.0.0"
 	},
