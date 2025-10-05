@@ -41,7 +41,7 @@ pnpm add --save-dev eslint-plugin-react-no-manual-memo
 | :----------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- | :--- | :- | :- |
 | [no-component-memo](https://github.com/BellCubeDev/eslint-plugin-react-no-manual-memo/blob/main/docs/no-component-memo.md)     | Disallow React.memo() in favor of React Compiler automatic memoization              | 🌐 ✅ |    | 🔧 |
 | [no-custom-memo-hook](https://github.com/BellCubeDev/eslint-plugin-react-no-manual-memo/blob/main/docs/no-custom-memo-hook.md) | Disallow custom hooks that only use useCallback and useMemo                         | 🌐   | ✅  |    |
-| [no-hook-memo](https://github.com/BellCubeDev/eslint-plugin-react-no-manual-memo/blob/main/docs/no-hook-memo.md)               | Disallow manual memoization hooks (useMemo, useCallback) in favor of React Compiler | 🌐   | ✅  | 🔧 |
+| [no-hook-memo](https://github.com/BellCubeDev/eslint-plugin-react-no-manual-memo/blob/main/docs/no-hook-memo.md)               | Disallow manual memoization hooks (useMemo, useCallback) in favor of React Compiler | 🌐 ✅ |    | 🔧 |
 
 <!-- end auto-generated rules list -->
 

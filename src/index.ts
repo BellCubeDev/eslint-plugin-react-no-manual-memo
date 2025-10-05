@@ -30,7 +30,7 @@ export const plugin = {
 		recommended: {
 			plugins: [namespace],
 			rules: {
-				[`${namespace}/no-hook-memo`]: 'warn',
+				[`${namespace}/no-hook-memo`]: 'error',
 				[`${namespace}/no-component-memo`]: 'error',
 				[`${namespace}/no-custom-memo-hook`]: 'warn',
 			},
@@ -50,7 +50,7 @@ export const plugin = {
 					[namespace]: {}, // circular ref; assigned after the plugin object is initially created
 				},
 				rules: {
-					[`${namespace}/no-hook-memo`]: 'warn',
+					[`${namespace}/no-hook-memo`]: 'error',
 					[`${namespace}/no-component-memo`]: 'error',
 					[`${namespace}/no-custom-memo-hook`]: 'warn',
 				},

@@ -4,7 +4,7 @@ Disallow manual memoization hooks (useMemo, useCallback) in favor of React Compi
 
 🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
 
-💼⚠️ This rule is enabled in the 🌐 `all` config. This rule _warns_ in the ✅ `recommended` config.
+💼 This rule is enabled in the following configs: 🌐 `all`, ✅ `recommended`.
 
 <!-- end auto-generated rule header -->
 
