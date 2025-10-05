@@ -1,6 +1,6 @@
 {
 	"name": "eslint-plugin-react-no-manual-memo",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "ESLint plugin for React Compiler users to flag manual memoization (useMemo, useCallback, React.memo), reminding you to let the compiler do its thing ✨",
 	"author": "BellCube",
 	"license": "MIT",
