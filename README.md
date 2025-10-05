@@ -50,23 +50,30 @@ pnpm add --save-dev eslint-plugin-react-no-manual-memo
 
 ### Flat Config (ESLint 9+)
 
-Use the recommended config:
+Use the recommended config inside `defineConfig()`:
 
 ```js
+import { defineConfig } from "eslint/config";
 import reactNoManualMemo from 'eslint-plugin-react-no-manual-memo';
 
-export default [
+export default defineConfig([
   	reactNoManualMemo.configs['flat/recommended'],
-];
+]);
 ```
+
+> [!NOTE]
+> ESLint will throw an error if you try to use the flat config without wrapping your config in `defineConfig()`.
+>
+> See the [docs section](https://eslint.org/docs/latest/use/configure/combine-configs#apply-a-config-array) about using third-party configs for more information.
 
 <details>
 <summary>Or configure it manually:</summary>
 
 ```js
+import { defineConfig } from "eslint/config";
 import reactNoManualMemo from 'eslint-plugin-react-no-manual-memo';
 
-export default [
+export default defineConfig([
 	{
 		plugins: {
 			'react-no-manual-memo': reactNoManualMemo,
@@ -76,7 +83,7 @@ export default [
 			// ...and any other rules you want to enable
 		},
 	},
-];
+]);
 ```
 
 </details>
